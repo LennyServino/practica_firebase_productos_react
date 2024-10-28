@@ -24,6 +24,10 @@ header{
     }
 }
 
+.user_dropdown {
+    order: 4;
+}
+
 @media (max-width: 768px) {
     .nav_item_btn a{
         padding: 1rem 0 !important;
@@ -32,6 +36,10 @@ header{
         &:hover {
             background-color: transparent;
         }
+    }
+
+    .user_dropdown {
+        order: -1;
     }
 }
 

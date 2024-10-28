@@ -3,6 +3,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth_user } from '../firebase/appConfig';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
     email: yup.string().required("El correo es obligatorio").email("Correo Invalido, ejemplo: usuario@dominio.com"),
@@ -13,6 +16,27 @@ export default function Login() {
     const { register, handleSubmit, formState: {errors} } = useForm({
         resolver: yupResolver(schema)
     })
+
+    const navigate = useNavigate()
+
+    const handleLogin = (data) => {
+        //console.log(data)
+        signInWithEmailAndPassword(auth_user, data.email, data.password)
+        .then((userCredential) => {
+            const userFirebase = userCredential.user
+            //console.log(userFirebase);
+            
+            localStorage.setItem('user_prodify', JSON.stringify(userFirebase))
+            navigate('/')
+        }).catch((error) => {
+            console.error(error.message);
+            Swal.fire({
+                title: "Credenciales Invalidas",
+                text: "Revisa tu informacion",
+                icon: "warning"
+            });
+        })
+    }
 
     return (
         <div>
@@ -25,7 +49,7 @@ export default function Login() {
                                     <div className="mb-md-1 mt-md-4 pb-5">
                                         <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
                                         <p className="text-white-50 mb-5">Ingresa tu correo y contraseña!</p>
-                                        <form action="">
+                                        <form action="" onSubmit={handleSubmit(handleLogin)}>
                                             <div className="form-outline form-white mb-4">
                                                 <label className="form-label" htmlFor="typeEmailX">Correo</label>
                                                 <input 
