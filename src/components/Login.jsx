@@ -7,6 +7,9 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth_user } from '../firebase/appConfig';
 import { useNavigate } from 'react-router-dom';
 
+/* importando estilos personalizados */
+import styles from '../styles/Login.module.css'
+
 const schema = yup.object().shape({
     email: yup.string().required("El correo es obligatorio").email("Correo Invalido, ejemplo: usuario@dominio.com"),
     password: yup.string().required("Campo Obligatorio").min(8, "La contraseña debe contener al menos 8 caracteres")
@@ -40,9 +43,9 @@ export default function Login() {
 
     return (
         <div>
-            <section className="gradient-custom">
-                <div className="container py-4">
-                    <div className="row d-flex justify-content-center align-items-center">
+            <section className={styles.backgroudn_login}>
+                <div className="container">
+                    <div className="row d-flex justify-content-center align-items-center vh-100">
                         <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                             <div className="card bg-dark text-white">
                                 <div className="card-body p-5 text-center">
