@@ -1,0 +1,9 @@
+.card_style {
+    width: 75%;
+}
+
+@media (max-width: 768px) {
+    .card_style {
+        width: 100%;
+    }
+}

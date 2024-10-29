@@ -41,7 +41,7 @@ export default function Menu() {
         //userFirebase = devuelve un objeto si la persona existe
         onAuthStateChanged(auth_user, (userFirebase) => {
             if(userFirebase) {
-                console.log(userFirebase);           
+                //console.log(userFirebase);           
                 //si el usuario existe guardamos los datos
                 setUser(userFirebase)
             } else {
@@ -88,12 +88,12 @@ export default function Menu() {
                                         user ? (
                                             <>
                                                 <div className={`dropdown py-2 ${styles.user_dropdown}`} id="navbarNavDarkDropdown">
-                                                    <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <button className="btn btn-dark dropdown-toggle" type='button' data-bs-toggle="dropdown" aria-expanded="false">
                                                         {userStorage.email}
                                                     </button>
                                                     <ul className="dropdown-menu dropdown-menu-dark">
                                                         <li>
-                                                            <a className="dropdown-item" onClick={logOut}>Cerrar Sesion</a>
+                                                            <a className="dropdown-item" href='#' onClick={logOut}>Cerrar Sesion</a>
                                                         </li>
                                                     </ul>
                                                 </div>

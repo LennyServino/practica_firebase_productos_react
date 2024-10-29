@@ -36,31 +36,40 @@ export default function RegisterProduct() {
     //console.log(watch('name'));
     
     return (
-        <div className={styles.form_container}>
-            <h2>Registro de productos</h2>
-            <form action="" onSubmit={handleSubmit(saveProduct)}>
-                <div>
-                    <label htmlFor="">Ingresar Producto</label>
-                    <input type="text" {...register('name', {required: "Este campo es obligatorio", pattern: {
-                        value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ, ]+$/i,
-                        message: 'Este campo solo debe contener letras' 
-                    }
-                    })}/>
-                    {errors.name && <span>{errors.name.message}</span>}
-                </div>
-                <div>
-                    <label htmlFor="">Descripcion</label>
-                    <input type="text" {...register('description', {required: "Este campo es obligatorio",  pattern: {
-                        value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ, ]+$/i,
-                        message: 'Este campo solo debe contener letras' 
-                    }
-                    })}/>
-                    {errors.description && <span>{errors.description.message}</span>}
-                </div>
-                <div>
-                    <button type='submit' className={styles.btn}>Guardar Producto</button>
-                </div>
-            </form>
+        <div className={`container ${styles.form_container}`}>
+            <div className='card w-md-50 mx-md-auto p-4 p-md-5'>
+                <h2>Registro de productos</h2>
+                <form action="" onSubmit={handleSubmit(saveProduct)}>
+                    <div className='my-4'>
+                        <label htmlFor="" className='form-label'>Ingresar Producto</label>
+                        <input 
+                            type="text" {...register('name', {required: "Este campo es obligatorio", pattern: {
+                                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ, ]+$/i,
+                                message: 'Este campo solo debe contener letras' 
+                            }
+                            })}
+                            className='form-control'
+                        />
+                        {errors.name && <span>{errors.name.message}</span>}
+                    </div>
+                    <div className='mb-4'>
+                        <label htmlFor="" className='form-label'>Descripcion</label>
+                        <input 
+                            type="text" 
+                            {...register('description', {required: "Este campo es obligatorio",  pattern: {
+                            value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ, ]+$/i,
+                            message: 'Este campo solo debe contener letras' 
+                            }
+                            })}
+                            className='form-control'
+                        />
+                        {errors.description && <span>{errors.description.message}</span>}
+                    </div>
+                    <div>
+                        <button type='submit' className={styles.btn}>Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
